@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.lifeistech.android.lockmyself.MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:text="時間設定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:layout_weight="1"
+            android:onClick="time" />
+
+        <Button
+            android:text="言い訳"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:onClick="reason" />
+
+        <Button
+            android:text="設定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:onClick="settei" />
+
+        <Button
+            android:text="ホームに戻る"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button13"
+            android:onClick="home" />
+    </LinearLayout>
+
+    <TextView
+        android:text="この時間での目標"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:id="@+id/textView3"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="分間　頑張る！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minits"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="時間"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="99dp"
+        android:id="@+id/hours"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="32dp"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/minits" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignBaseline="@+id/hours"
+        android:layout_alignBottom="@+id/hours"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="スタート！"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button8"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:onClick="start" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="23dp"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
