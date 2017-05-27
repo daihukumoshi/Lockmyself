@@ -68,6 +68,14 @@ public class Sentence2Activity extends AppCompatActivity {
 
     public void change(View v){
         Intent intent = new Intent(this,SentenceActivity.class);
+        intent.putExtra("Text1",Text1);
+        intent.putExtra("Text2",Text2);
+        intent.putExtra("Text3",Text3);
+        intent.putExtra("Text4",Text4);
+        intent.putExtra("Text5",Text5);
+        intent.putExtra("Text6",Text6);
+        intent.putExtra("Text7",Text7);
+        intent.putExtra("Text8",Text8);
         startActivity(intent);
     }
     public void time (View v){

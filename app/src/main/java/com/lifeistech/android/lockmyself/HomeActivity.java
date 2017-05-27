@@ -3,6 +3,7 @@ package com.lifeistech.android.lockmyself;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void reason(View v){
+        Log.d("reason","クリックされました");
         Intent intent = new Intent(this,ReasonActivity.class);
         startActivity(intent);
     }

@@ -16,15 +16,11 @@ public class subActivity extends AppCompatActivity {
 
     String goaltext;
     TextView textView1;
-    Timer mTimer;
-    Timer timer1;
     Timer timer2;
-    Handler mHandler;
-    Handler handler1;
     Handler handler2;
-    int fText;
-    int fText1;
     int fText2;
+    int fText1;
+    int fText;
     TextView text1;
     TextView text2;
     String sentence;
@@ -42,55 +38,12 @@ public class subActivity extends AppCompatActivity {
         Intent intent = getIntent();
         goaltext = intent.getStringExtra("mokuhyou");
         sentence = intent.getStringExtra("sentence");
-        fText = intent.getIntExtra("f",0);
         fText1 = intent.getIntExtra("t1",0);
         fText2 = intent.getIntExtra("t2",0);
         textView1.setText(goaltext);
-        mHandler = new Handler();
-        handler1 = new Handler();
         handler2 = new Handler();
 
-
-        mTimer = new Timer(false);
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        fText--;
-                        Log.d("fT", "「" + fText + "」");
-
-                    }
-
-
-                });
-            }
-
-        },0,1000);
-
-        timer1 = new Timer(false);
-        timer1.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler1.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        fText1--;
-                        if(fText1<=0) {
-                            text1.setText("0");
-                        }
-                        else {
-                            text1.setText(String.valueOf(fText1));
-                        }
-
-                    }
-
-
-                });
-            }
-
-        },0,3600000);
+        fText = fText2+fText1*60;
 
         timer2 = new Timer(false);
         timer2.schedule(new TimerTask() {
@@ -99,33 +52,23 @@ public class subActivity extends AppCompatActivity {
                 handler2.post(new Runnable() {
                     @Override
                     public void run() {
-                        fText2--;
-                        if(fText2<=0) {
-                            text2.setText("0");
+                        if (fText == 0) {
+                            timer2.cancel();
+                            Intent intent2 = new Intent(getApplicationContext(), CongratulationsActivity.class);
+                            startActivity(intent2);
+                        } else {
+                            fText1 = fText / 60;
+                            fText2 = fText % 60;
+                            text2.setText("" + fText2);
+                            text1.setText("" + fText1);
                         }
-                        else {
-                            text2.setText(String.valueOf(fText2));
-                        }
+                        fText--;
 
+                        Log.d("FT=", "" + fText);
                     }
-
-
                 });
             }
-
         },0,60000);
-
-
-
-        //if (fText == 0) {
-        //    mTimer.cancel();
-        //    Intent intent2 = new Intent(this, CongratulationsActivity.class);
-        //    startActivity(intent2);
-        //}
-        //↑ReallyActivityから戻ってきた時、CongratulationsActivityに飛んでしまう原因。
-        //本当は、0秒の時、CongratulationsActivityに遷移したい
-
-
     }
 
     @Override

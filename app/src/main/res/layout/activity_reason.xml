@@ -32,7 +32,8 @@
             android:layout_height="371dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="0.96" />
+            android:layout_weight="0.96"
+            android:id="@+id/ListView1" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
                 android:layout_weight="1"
-                android:onClick="time (ReasonActivity)" />
+                android:onClick="time" />
 
             <Button
                 android:text="言い訳"
