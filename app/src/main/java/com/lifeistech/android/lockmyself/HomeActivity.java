@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void settei(View v){
-        Intent intent = new Intent(this,SentenceActivity.class);
+        Intent intent = new Intent(this,Sentence2Activity.class);
         startActivity(intent);
     }
     public void home (View v){

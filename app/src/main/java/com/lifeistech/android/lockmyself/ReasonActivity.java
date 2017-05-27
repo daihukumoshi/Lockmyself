@@ -31,7 +31,7 @@ public class ReasonActivity extends AppCompatActivity {
     public void reason(View v){
     }
     public void settei(View v){
-        Intent intent = new Intent(this,SentenceActivity.class);
+        Intent intent = new Intent(this,Sentence2Activity.class);
         startActivity(intent);
     }
     public void home (View v){

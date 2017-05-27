@@ -230,44 +230,5 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:text="時間設定"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:layout_weight="1"
-            android:onClick="time" />
-
-        <Button
-            android:text="言い訳"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2"
-            android:layout_weight="1"
-            android:onClick="reason" />
-
-        <Button
-            android:text="設定"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button3"
-            android:layout_weight="1"
-            android:onClick="settei" />
-
-        <Button
-            android:text="ホームに戻る"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button11"
-            android:onClick="home" />
-    </LinearLayout>
-
 
 </RelativeLayout>
