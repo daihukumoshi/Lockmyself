@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 public class ReasonActivity extends AppCompatActivity {
     String reason;
+    String sentence;
     ListView Listview;
     ArrayAdapter adapter;
 
@@ -25,10 +26,15 @@ public class ReasonActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         reason = intent.getStringExtra("reason");
+        sentence = intent.getStringExtra("sentence");
+
         //Log.d("reason=", String.valueOf(reason ==null));
         if(reason!=null){
             adapter.add(reason);
         }
+
+
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -43,12 +49,14 @@ public class ReasonActivity extends AppCompatActivity {
     }
     public void time(View v){
         Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
     public void reason(View v){
     }
     public void settei(View v){
         Intent intent = new Intent(this,Sentence2Activity.class);
+        intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
     public void home (View v){

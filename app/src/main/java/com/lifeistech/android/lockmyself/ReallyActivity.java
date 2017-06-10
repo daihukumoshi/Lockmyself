@@ -3,6 +3,7 @@ package com.lifeistech.android.lockmyself;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ public class ReallyActivity extends AppCompatActivity {
 
         Intent intent2 = getIntent();
         sentence =intent2.getStringExtra("sentence");
+
+        Log.d("sentence",""+sentence);
 
         textView3.setText(sentence);
     }

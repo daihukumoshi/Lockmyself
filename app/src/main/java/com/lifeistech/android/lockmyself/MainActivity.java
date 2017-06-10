@@ -19,14 +19,12 @@ import java.util.logging.LogRecord;
 public class MainActivity extends AppCompatActivity {
 
 
-    String Sentence;
+    String sentence;
     int Text1;
     int Text2;
     int fText1;
     int fText2;
     int fText;
-    int t1;
-    int t2;
     EditText editText1;
     EditText editText2;
     EditText editText3;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     Intent intent = getIntent();
-    Sentence =intent.getStringExtra("Sentence");
+    sentence =intent.getStringExtra("sentence");
 
         editText1= (EditText) findViewById(R.id.editText);
         editText1.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
@@ -49,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
         editText2.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
 
         editText3 = (EditText) findViewById(R.id.editText3);
-        text1 = editText1.getText().toString();
-        text2 = editText2.getText().toString();
-        text3 = editText3.getText().toString();
+
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -65,19 +62,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void start (View v) {
-        //スタートボタンを押した時、必ずおめでとう画面に遷移してしまう
+        //String➡︎Intの変換で落ちる
+        Log.d("text1", ""+editText1.length());
+        Log.d("text2", ""+editText2.length());
 
-        if(editText1.length()+editText2.length()==0){
+        if(editText1.length()==0&&editText2.length() == 0){
+
             Toast toast = Toast.makeText(MainActivity.this, "時間を入力してください", Toast.LENGTH_SHORT);
             toast.show();
 
-        }else{
-            if(text1.length()==0){
+        }else {
+
+
+            text1 = editText1.getText().toString();
+            text2 = editText2.getText().toString();
+            text3 = editText3.getText().toString();
+
+            if(editText1.length()==0){
                 text1="0";
             }
-            if(text2.length()==0){
+            if(editText2.length()==0){
                 text2="0";
             }
+
+
+
             Text1 = Integer.parseInt(text1);
             Text2 = Integer.parseInt(text2);
             fText1 = Text1*3600;
@@ -86,12 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent2 = new Intent(this,subActivity.class);
             intent2.putExtra("mokuhyou",text3);//Edittext3にある目標をsubActivityに受け渡す
-            intent2.putExtra("sentence",Sentence);
-            intent2.putExtra("f",fText);
+            intent2.putExtra("sentence",sentence);
+            //intent2.putExtra("f",fText);
             intent2.putExtra("t1",Text1);
             intent2.putExtra("t2",Text2);
             startActivity(intent2);
+
         }
+
 
 
 

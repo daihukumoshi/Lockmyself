@@ -3,9 +3,13 @@ package com.lifeistech.android.lockmyself;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class Sentence2Activity extends AppCompatActivity {
     String sentence;
@@ -25,7 +29,7 @@ public class Sentence2Activity extends AppCompatActivity {
     TextView textView6;
     TextView textView7;
     TextView textView8;
-
+    HashMap hashMap;
 
 
 
@@ -35,6 +39,7 @@ public class Sentence2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sentence2);
+        hashMap = new HashMap<String,String>();
 
         textView1 = (TextView)findViewById(R.id.textView9);
         textView2 = (TextView)findViewById(R.id.textView10);
@@ -45,25 +50,40 @@ public class Sentence2Activity extends AppCompatActivity {
         textView7 = (TextView)findViewById(R.id.textView15);
         textView8 = (TextView)findViewById(R.id.textView16);
 
-        Intent intent = getIntent();
-        sentence =intent.getStringExtra("Sentence");
-        Text1 = intent.getStringExtra("text1");
-        Text2 = intent.getStringExtra("text2");
-        Text3 = intent.getStringExtra("text3");
-        Text4 = intent.getStringExtra("text4");
-        Text5 = intent.getStringExtra("text5");
-        Text6 = intent.getStringExtra("text6");
-        Text7 = intent.getStringExtra("text7");
-        Text8 = intent.getStringExtra("text8");
+            Intent intent = getIntent();
+            sentence =intent.getStringExtra("sentence");
+            Text1 = intent.getStringExtra("text1");
+            Text2 = intent.getStringExtra("text2");
+            Text3 = intent.getStringExtra("text3");
+            Text4 = intent.getStringExtra("text4");
+            Text5 = intent.getStringExtra("text5");
+            Text6 = intent.getStringExtra("text6");
+            Text7 = intent.getStringExtra("text7");
+            Text8 = intent.getStringExtra("text8");
 
-        textView1.setText(Text1);
-        textView2.setText(Text2);
-        textView3.setText(Text3);
-        textView4.setText(Text4);
-        textView5.setText(Text5);
-        textView6.setText(Text6);
-        textView7.setText(Text7);
-        textView8.setText(Text8);
+        String[] text = {Text1,Text2,Text3,Text4,Text5,Text6,Text7,Text8};
+
+
+        for(int i = 0;i<=7;i++){
+            if(text[i]==null){
+                text[i]=" ";
+                hashMap.put(text[i],text[i]);
+            }else{
+                hashMap.put(text[i],text[i]);
+
+            }
+        }
+
+        textView1.setText(hashMap.get(text[0]).toString());
+        textView2.setText(hashMap.get(text[1]).toString());
+        textView3.setText(hashMap.get(text[2]).toString());
+        textView4.setText(hashMap.get(text[3]).toString());
+        textView5.setText(hashMap.get(text[4]).toString());
+        textView6.setText(hashMap.get(text[5]).toString());
+        textView7.setText(hashMap.get(text[6]).toString());
+        textView8.setText(hashMap.get(text[7]).toString());
+
+
     }
 
     public void change(View v){
@@ -80,11 +100,12 @@ public class Sentence2Activity extends AppCompatActivity {
     }
     public void time (View v){
         Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("Sentence",sentence);
+        intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
     public void reason(View v){
         Intent intent = new Intent(this,ReasonActivity.class);
+        intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
     public void settei(View v){
