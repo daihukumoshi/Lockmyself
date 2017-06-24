@@ -9,11 +9,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class subActivity extends AppCompatActivity {
-
     String goaltext;
     TextView textView1;
     Timer timer2;
@@ -25,6 +25,8 @@ public class subActivity extends AppCompatActivity {
     TextView text2;
     String sentence;
 
+    ArrayList LinkedList1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +35,10 @@ public class subActivity extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.textView16);
         text1 = (TextView)findViewById(R.id.textView11) ;
         text2 = (TextView)findViewById(R.id.textView12) ;
-
-
         Intent intent = getIntent();
         goaltext = intent.getStringExtra("mokuhyou");
         sentence = intent.getStringExtra("sentence");
+        LinkedList1 = intent.getIntegerArrayListExtra("LinkedList1");
         fText1 = intent.getIntExtra("t1",0);
         fText2 = intent.getIntExtra("t2",0);
         textView1.setText(goaltext);

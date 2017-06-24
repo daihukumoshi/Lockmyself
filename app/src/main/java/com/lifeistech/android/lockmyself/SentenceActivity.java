@@ -1,14 +1,17 @@
 package com.lifeistech.android.lockmyself;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.security.cert.CertPathValidatorException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -23,8 +26,7 @@ public class SentenceActivity extends AppCompatActivity {
     String text6;
     String text7;
     String text8;
-    String sentence;
-    LinkedList LinkedList1;
+    ArrayList LinkedList1;
     EditText editText1;
     EditText editText2;
     EditText editText3;
@@ -33,6 +35,7 @@ public class SentenceActivity extends AppCompatActivity {
     EditText editText6;
     EditText editText7;
     EditText editText8;
+    SharedPreferences pref;
 //以下、for文やwhile文で簡単に！
 
     @Override
@@ -47,27 +50,27 @@ public class SentenceActivity extends AppCompatActivity {
         editText6 = (EditText) findViewById(R.id.editText6);
         editText7 = (EditText) findViewById(R.id.editText7);
         editText8 = (EditText) findViewById(R.id.editText8);
+        pref = getSharedPreferences("pref_text",MODE_PRIVATE);
 
-        LinkedList1 = new LinkedList<String>();
+        LinkedList1 = new ArrayList<String>();
 
-            Intent intent = getIntent();
-
-            text1 =intent.getStringExtra("Text1");
-            editText1.setText(text1);
-            text2 =intent.getStringExtra("Text2");
-            editText2.setText(text2);
-            text3 =intent.getStringExtra("Text3");
-            editText3.setText(text3);
-            text4 =intent.getStringExtra("Text4");
-            editText4.setText(text4);
-            text5 =intent.getStringExtra("Text5");
-            editText5.setText(text5);
-            text6 =intent.getStringExtra("Text6");
-            editText6.setText(text6);
-            text7 =intent.getStringExtra("Text7");
-            editText7.setText(text7);
-            text8 =intent.getStringExtra("Text8");
-            editText8.setText(text8);
+        Intent intent = getIntent();
+        text1 =intent.getStringExtra("Text1");
+        editText1.setText(text1);
+        text2 =intent.getStringExtra("Text2");
+        editText2.setText(text2);
+        text3 =intent.getStringExtra("Text3");
+        editText3.setText(text3);
+        text4 =intent.getStringExtra("Text4");
+        editText4.setText(text4);
+        text5 =intent.getStringExtra("Text5");
+        editText5.setText(text5);
+        text6 =intent.getStringExtra("Text6");
+        editText6.setText(text6);
+        text7 =intent.getStringExtra("Text7");
+        editText7.setText(text7);
+        text8 =intent.getStringExtra("Text8");
+        editText8.setText(text8);
 
 
 
@@ -85,29 +88,41 @@ public class SentenceActivity extends AppCompatActivity {
             }
         }
         if(LinkedList1.size()<=2){
-            Toast toast = Toast.makeText(SentenceActivity.this, "脅し文を二つ以上入力してください", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(SentenceActivity.this, "脅し文を３つ以上入力してください", Toast.LENGTH_SHORT);
             toast.show();
         }else{
             Intent intent = new Intent(this,Sentence2Activity.class);
             text1 = editText1.getText().toString();
+            text2 = editText2.getText().toString();
+            text3 = editText3.getText().toString();
+            text4 = editText4.getText().toString();
+            text5 = editText5.getText().toString();
+            text6 = editText6.getText().toString();
+            text7 = editText7.getText().toString();
+            text8 = editText8.getText().toString();
 
             int index2 = LinkedList1.size();
-            Random random = new Random();
+            //Random random = new Random();
             //int index = random.nextInt(index2);
-            int index = (int)Math.random()*index2 + 1;
-            sentence =LinkedList1.get(index).toString();
+            //int index = (int)Math.random()*index2 + 1;
+            //sentence =LinkedList1.get(index).toString();
+            //String[] array=(String[])LinkedList1.toArray(new String[0]);
 
-            intent.putExtra("sentence",sentence);
-            intent.putExtra("text1",edit[0].getText().toString());
-            intent.putExtra("text2",edit[1].getText().toString());
-            intent.putExtra("text3",edit[2].getText().toString());
-            intent.putExtra("text4",edit[3].getText().toString());
-            intent.putExtra("text5",edit[4].getText().toString());
-            intent.putExtra("text6",edit[5].getText().toString());
-            intent.putExtra("text7",edit[6].getText().toString());
-            intent.putExtra("text8",edit[7].getText().toString());
+            //intent.putExtra("sentence",sentence);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("text1",text1);
+            editor.putString("text2",text2);
+            editor.putString("text3",text3);
+            editor.putString("text4",text4);
+            editor.putString("text5",text5);
+            editor.putString("text6",text6);
+            editor.putString("text7",text7);
+            editor.putString("text8",text8);
+            editor.commit();
+            intent.putStringArrayListExtra("LinkedList1", LinkedList1);
+            intent.putExtra("size",index2);
 
-            startActivityForResult(intent,1);
+            startActivity(intent);
         }
 
     }

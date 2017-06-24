@@ -9,6 +9,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Handler;
@@ -18,8 +21,6 @@ import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    String sentence;
     int Text1;
     int Text2;
     int fText1;
@@ -31,14 +32,19 @@ public class MainActivity extends AppCompatActivity {
     String text3;
     String text2;
     String text1;
-
+    ArrayList LinkedList1;
+    int index;
+    String sentence;
+    int index2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    Intent intent = getIntent();
-    sentence =intent.getStringExtra("sentence");
+        Intent intent = getIntent();
+        LinkedList1 = intent.getIntegerArrayListExtra("LinkedList1");
+
+        index2 = intent.getIntExtra("size",0);
 
         editText1= (EditText) findViewById(R.id.editText);
         editText1.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
@@ -47,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         editText2.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
 
         editText3 = (EditText) findViewById(R.id.editText3);
-
+        Random random = new Random();
+        index = random.nextInt(index2+1);
 
     }
     @Override
@@ -59,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
        return super.onKeyDown(keyCode, event);
     }
-
-
     public void start (View v) {
-        //String➡︎Intの変換で落ちる
+
+        if(LinkedList1==null){
+            Toast.makeText(this,"設定から文を入力してください",Toast.LENGTH_LONG).show();
+        } else{
         Log.d("text1", ""+editText1.length());
         Log.d("text2", ""+editText2.length());
 
@@ -78,33 +86,31 @@ public class MainActivity extends AppCompatActivity {
             text2 = editText2.getText().toString();
             text3 = editText3.getText().toString();
 
-            if(editText1.length()==0){
-                text1="0";
+            if (editText1.length() == 0) {
+                text1 = "0";
             }
-            if(editText2.length()==0){
-                text2="0";
+            if (editText2.length() == 0) {
+                text2 = "0";
             }
-
 
 
             Text1 = Integer.parseInt(text1);
             Text2 = Integer.parseInt(text2);
-            fText1 = Text1*3600;
-            fText2 = Text2*60;
-            fText = fText1+fText2;
+            fText1 = Text1 * 3600;
+            fText2 = Text2 * 60;
+            fText = fText1 + fText2;
 
-            Intent intent2 = new Intent(this,subActivity.class);
-            intent2.putExtra("mokuhyou",text3);//Edittext3にある目標をsubActivityに受け渡す
-            intent2.putExtra("sentence",sentence);
+            Intent intent2 = new Intent(this, subActivity.class);
+            intent2.putExtra("mokuhyou", text3);//Edittext3にある目標をsubActivityに受け渡す
             //intent2.putExtra("f",fText);
-            intent2.putExtra("t1",Text1);
-            intent2.putExtra("t2",Text2);
+            intent2.putExtra("t1", Text1);
+            intent2.putExtra("t2", Text2);
+            sentence = LinkedList1.get(index).toString();//落ちる
+            intent2.putExtra("sentence", sentence);
             startActivity(intent2);
+            }
 
         }
-
-
-
 
     }
     public void time (View v){
