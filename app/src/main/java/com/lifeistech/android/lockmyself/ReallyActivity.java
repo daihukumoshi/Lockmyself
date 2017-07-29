@@ -1,17 +1,22 @@
 package com.lifeistech.android.lockmyself;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
+
+import io.realm.Realm;
 
 public class ReallyActivity extends AppCompatActivity {
 
@@ -26,6 +31,9 @@ public class ReallyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_really);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
 
         textView3 = (TextView)findViewById(R.id.textView3) ;
         edit = (EditText)findViewById(R.id.editText9);
@@ -47,7 +55,16 @@ public class ReallyActivity extends AppCompatActivity {
         }
 
         else{
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
             reason = edit.getText().toString();
+            Realm.init(this);
+            Realm realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            ReasonData reasonData = realm.createObject(ReasonData.class);
+            reasonData.reason=reason;
+            realm.commitTransaction();
+            realm.close();
+
             Intent intent = new Intent(this,ReasonActivity.class);
             intent.putExtra("LinkedList1",LinkedList1);
             intent.putExtra("size",index2);
@@ -56,8 +73,7 @@ public class ReallyActivity extends AppCompatActivity {
         }
     }
     public void back(View v){
-        Intent intent = new Intent(this,subActivity.class);
-        startActivity(intent);
+       finish();
     }
 
 

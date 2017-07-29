@@ -40,7 +40,9 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:orientation="horizontal"

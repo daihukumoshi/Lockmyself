@@ -27,9 +27,4 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Sentence2Activity.class);
         startActivity(intent);
     }
-    public void home (View v){
-        Intent intent = new Intent("android.settings.SETTINGS");
-        intent.setAction(android.provider.Settings.ACTION_SETTINGS);
-        startActivity(intent);
-    }
 }

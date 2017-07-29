@@ -66,12 +66,6 @@
                 android:layout_weight="1"
                 android:onClick="settei" />
 
-            <Button
-                android:text="ホームに戻る"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button12"
-                android:onClick="home" />
         </LinearLayout>
     </LinearLayout>
 

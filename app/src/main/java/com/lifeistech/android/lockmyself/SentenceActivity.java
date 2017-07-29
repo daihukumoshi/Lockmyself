@@ -36,6 +36,7 @@ public class SentenceActivity extends AppCompatActivity {
     EditText editText7;
     EditText editText8;
     SharedPreferences pref;
+
 //以下、for文やwhile文で簡単に！
 
     @Override
@@ -77,56 +78,32 @@ public class SentenceActivity extends AppCompatActivity {
     }
 
     public void ok(View v) {
-        //配列以降、５/３０追記
-
-
         EditText[] edit = {editText1,editText2,editText3,editText4,editText5,editText6,editText7,editText8};
+        String[] text = {text1,text2,text3,text4,text5,text6,text7,text8};
 
         for(int i =0;i<=7;i++){
             if(edit[i].length()>=1){
                 LinkedList1.add(edit[i].getText().toString());
             }
         }
+        int index2 = LinkedList1.size();
+        SharedPreferences.Editor editor = pref.edit();
         if(LinkedList1.size()<=2){
             Toast toast = Toast.makeText(SentenceActivity.this, "脅し文を３つ以上入力してください", Toast.LENGTH_SHORT);
             toast.show();
         }else{
             Intent intent = new Intent(this,Sentence2Activity.class);
-            text1 = editText1.getText().toString();
-            text2 = editText2.getText().toString();
-            text3 = editText3.getText().toString();
-            text4 = editText4.getText().toString();
-            text5 = editText5.getText().toString();
-            text6 = editText6.getText().toString();
-            text7 = editText7.getText().toString();
-            text8 = editText8.getText().toString();
-
-            int index2 = LinkedList1.size();
-            //Random random = new Random();
-            //int index = random.nextInt(index2);
-            //int index = (int)Math.random()*index2 + 1;
-            //sentence =LinkedList1.get(index).toString();
-            //String[] array=(String[])LinkedList1.toArray(new String[0]);
-
-            //intent.putExtra("sentence",sentence);
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putString("text1",text1);
-            editor.putString("text2",text2);
-            editor.putString("text3",text3);
-            editor.putString("text4",text4);
-            editor.putString("text5",text5);
-            editor.putString("text6",text6);
-            editor.putString("text7",text7);
-            editor.putString("text8",text8);
+            for(int a = 0;a<=7;a++){
+                text[a] = edit[a].getText().toString();
+                editor.putString("text"+(a+1),text[a]);
+                Log.d("text","text[a]="+text[a]);
+            }
             editor.commit();
             intent.putStringArrayListExtra("LinkedList1", LinkedList1);
             intent.putExtra("size",index2);
-
             startActivity(intent);
         }
-
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Disable Back key

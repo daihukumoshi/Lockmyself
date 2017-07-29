@@ -33,13 +33,4 @@
         android:textSize="24sp"
         android:onClick="Thanks" />
 
-    <Button
-        android:text="ホームに戻る"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:id="@+id/button10"
-        android:onClick="home" />
 </RelativeLayout>

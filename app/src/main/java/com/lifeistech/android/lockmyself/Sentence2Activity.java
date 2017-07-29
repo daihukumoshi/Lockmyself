@@ -35,11 +35,6 @@ public class Sentence2Activity extends AppCompatActivity {
     HashMap hashMap;
     int index2;
     SharedPreferences pref;
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,12 +83,9 @@ public class Sentence2Activity extends AppCompatActivity {
                 hashMap.put(text[i],text[i]);
             }else{
                 hashMap.put(text[i],text[i]);
-
             }
         }
-
     }
-
     public void change(View v){
         Intent intent = new Intent(this,SentenceActivity.class);
         intent.putExtra("Text1",Text1);
@@ -119,10 +111,5 @@ public class Sentence2Activity extends AppCompatActivity {
         startActivity(intent);
     }
     public void settei(View v){
-    }
-    public void home (View v){
-        Intent intent = new Intent("android.settings.SETTINGS");
-        intent.setAction(android.provider.Settings.ACTION_SETTINGS);
-        startActivity(intent);
     }
 }

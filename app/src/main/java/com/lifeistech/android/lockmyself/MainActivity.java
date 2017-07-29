@@ -1,5 +1,8 @@
 package com.lifeistech.android.lockmyself;
 
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,11 +18,15 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Handler;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int ADMIN_INTENT = 1;
+    private DevicePolicyManager mDevicePolicyManager;
+    private ComponentName mComponentName;
 
     int Text1;
     int Text2;
@@ -36,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     int index;
     String sentence;
     int index2;
+    TextView textView19;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +63,17 @@ public class MainActivity extends AppCompatActivity {
         editText2.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
 
         editText3 = (EditText) findViewById(R.id.editText3);
-        Random random = new Random();
-        index = random.nextInt(index2+1);
+        if(index2!=0){
+            Random random = new Random();
+            index = random.nextInt(index2);
+        }else{
+            index2=0;
+        }
+
+
+        textView19 = (TextView)findViewById(R.id.textView19);
+
+        textView19.setText("アプリの円滑な利用のため、\n"+"必ずロックを許可してください");
 
     }
     @Override
@@ -69,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public void start (View v) {
 
         if(LinkedList1==null){
-            Toast.makeText(this,"設定から文を入力してください",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"設定から文を入力もしくは\n"+"更新してください",Toast.LENGTH_LONG).show();
         } else{
         Log.d("text1", ""+editText1.length());
         Log.d("text2", ""+editText2.length());
@@ -102,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent2 = new Intent(this, subActivity.class);
             intent2.putExtra("mokuhyou", text3);//Edittext3にある目標をsubActivityに受け渡す
-            //intent2.putExtra("f",fText);
             intent2.putExtra("t1", Text1);
             intent2.putExtra("t2", Text2);
             sentence = LinkedList1.get(index).toString();//落ちる
@@ -111,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+
 
     }
     public void time (View v){
@@ -121,11 +140,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void settei(View v){
         Intent intent = new Intent(this,Sentence2Activity.class);
-        startActivity(intent);
-    }
-    public void home (View v){
-        Intent intent = new Intent("android.settings.SETTINGS");
-        intent.setAction(android.provider.Settings.ACTION_SETTINGS);
         startActivity(intent);
     }
 

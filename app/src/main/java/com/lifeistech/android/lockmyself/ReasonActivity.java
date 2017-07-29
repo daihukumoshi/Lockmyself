@@ -11,33 +11,34 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class ReasonActivity extends AppCompatActivity {
     String reason;
     ListView Listview;
     ArrayAdapter adapter;
     ArrayList LinkedList1;
     int index2;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reason);
         Listview = (ListView) findViewById(R.id.ListView1);
         adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1);
-
         Listview.setAdapter(adapter);
 
         Intent intent = getIntent();
-        reason = intent.getStringExtra("reason");
         index2 = intent.getIntExtra("size",0);
-
-
-        //Log.d("reason=", String.valueOf(reason ==null));
-        if(reason!=null){
-            adapter.add(reason);
+        Realm.init(this);
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<ReasonData> reasonData = realm.where(ReasonData.class).findAll();
+        int size =reasonData.size();
+        for(int a = 0;a<size;a++){
+            adapter.add(reasonData.get(a).reason);
         }
         adapter.notifyDataSetChanged();
+        realm.close();
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -45,7 +46,6 @@ public class ReasonActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return false;
         }
-
         return super.onKeyDown(keyCode, event);
     }
     public void time(View v){
@@ -62,13 +62,4 @@ public class ReasonActivity extends AppCompatActivity {
         intent.putExtra("size",index2);
         startActivity(intent);
     }
-    public void home (View v){
-        Intent intent = new Intent("android.settings.SETTINGS");
-        intent.setAction(android.provider.Settings.ACTION_SETTINGS);
-        startActivity(intent);
-    }
 }
-
-
-//課題１：　adapterのデータを、他の画面に遷移しても維持したい！
-//ReallyActivity以外から遷移すると、onCreateから、adapterが新しく作られてしまう
