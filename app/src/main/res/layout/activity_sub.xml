@@ -61,7 +61,10 @@
         android:id="@+id/button7"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:onClick="rock" />
+        android:onClick="rock"
+        android:background="@null"
+        android:textColor="#00afcc"
+        android:textSize="24sp" />
 
     <TextView
         android:text="目標"
@@ -69,7 +72,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:id="@+id/textView15"
-        android:textColor="@android:color/black"
+        android:textColor="#00afcc"
+        android:textSize="23sp"
         android:layout_below="@+id/textView12"
         android:layout_alignParentStart="true"
         android:layout_marginStart="31dp" />
@@ -90,7 +94,7 @@
         android:layout_marginTop="21dp"
         android:id="@+id/textView16"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:layout_below="@+id/textView15"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

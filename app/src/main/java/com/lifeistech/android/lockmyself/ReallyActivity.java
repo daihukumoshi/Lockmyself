@@ -2,6 +2,7 @@ package com.lifeistech.android.lockmyself;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class ReallyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_really);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
@@ -57,18 +60,16 @@ public class ReallyActivity extends AppCompatActivity {
         else{
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
             reason = edit.getText().toString();
-            Realm.init(this);
-            Realm realm = Realm.getDefaultInstance();
-            realm.beginTransaction();
-            ReasonData reasonData = realm.createObject(ReasonData.class);
-            reasonData.reason=reason;
-            realm.commitTransaction();
-            realm.close();
-
-            Intent intent = new Intent(this,ReasonActivity.class);
-            intent.putExtra("LinkedList1",LinkedList1);
-            intent.putExtra("size",index2);
-            startActivity(intent);
+                    Realm.init(this);
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    ReasonData reasonData = realm.createObject(ReasonData.class);
+                    reasonData.reason=reason;
+                    realm.commitTransaction();
+                    realm.close();
+                    Intent intent = new Intent(this,ReasonActivity.class);
+                intent.putExtra("LinkedList1",LinkedList1);
+                intent.putExtra("size",index2);
 
         }
     }

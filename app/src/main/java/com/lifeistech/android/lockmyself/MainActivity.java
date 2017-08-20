@@ -4,6 +4,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Intent intent = getIntent();
         LinkedList1 = intent.getIntegerArrayListExtra("LinkedList1");
@@ -71,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        textView19 = (TextView)findViewById(R.id.textView19);
+        //textView19 = (TextView)findViewById(R.id.textView19);
 
-        textView19.setText("アプリの円滑な利用のため、\n"+"必ずロックを許可してください");
+        //textView19.setText("アプリの円滑な利用のため、\n"+"必ずロックを許可してください");
 
     }
     @Override
@@ -140,6 +142,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void settei(View v){
         Intent intent = new Intent(this,Sentence2Activity.class);
+        startActivity(intent);
+    }
+    public void list(View v){
+        Intent intent = new Intent(this,TodoActivity.class);
         startActivity(intent);
     }
 

@@ -10,37 +10,66 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.lifeistech.android.lockmyself.HomeActivity">
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/button2"
+        android:layout_weight="1"
+        android:onClick="reason"
+        android:background="@null"
+        android:src="@drawable/say1"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="164dp">
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentStart="true">
 
-        <Button
-            android:text="時間設定"
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button"
             android:layout_weight="1"
-            android:onClick="time" />
+            android:onClick="time"
+            android:background="@null"
+            android:src="@drawable/clock3"
+            android:scaleType="fitCenter"/>
 
-        <Button
-            android:text="言い訳"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="reason" />
+            android:src="@drawable/a"/>
 
-        <Button
-            android:text="設定"
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button3"
             android:layout_weight="1"
-            android:onClick="settei" />
+            android:onClick="settei"
+            android:src="@drawable/haguruma1"
+            android:scaleType="fitCenter"
+            android:background="@null"/>
     </LinearLayout>
+
+    <ImageButton
+
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/button4"
+        android:layout_weight="1"
+        android:onClick="list"
+        android:background="@null"
+        android:src="@drawable/list"
+        android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>

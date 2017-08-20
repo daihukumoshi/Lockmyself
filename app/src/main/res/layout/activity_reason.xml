@@ -25,7 +25,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:id="@+id/TextView"
-            android:textSize="18sp" />
+            android:textSize="23sp"
+            android:textColor="#00afcc"/>
 
         <ListView
             android:layout_width="match_parent"
@@ -38,34 +39,51 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
+            android:layout_height="101dp"
+            android:layout_alignParentBottom="true">
 
-            <Button
-                android:text="時間設定"
+            <ImageButton
+
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/button"
+                android:onClick="time"
+                android:background="@null"
+                android:src="@drawable/clock3"
                 android:layout_weight="1"
-                android:onClick="time" />
+                android:scaleType="fitCenter" />
 
-            <Button
-                android:text="言い訳"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/say1"
                 android:id="@+id/button2"
                 android:layout_weight="1"
-                android:onClick="reason" />
+                android:onClick="reason"
+                android:scaleType="fitCenter"/>
 
-            <Button
-                android:text="設定"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/button3"
                 android:layout_weight="1"
-                android:onClick="settei" />
+                android:onClick="settei"
+                android:background="@null"
+                android:src="@drawable/haguruma1"
+                android:scaleType="fitCenter"/>
+            <ImageButton
 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button4"
+                android:layout_weight="1"
+                android:onClick="list"
+                android:background="@null"
+                android:src="@drawable/list"
+                android:scaleType="fitCenter"/>
         </LinearLayout>
     </LinearLayout>
 

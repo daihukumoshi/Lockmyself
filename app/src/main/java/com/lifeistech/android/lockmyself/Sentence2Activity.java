@@ -2,6 +2,7 @@ package com.lifeistech.android.lockmyself;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class Sentence2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sentence2);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         hashMap = new HashMap<String,String>();
         pref = getSharedPreferences("pref_text",MODE_PRIVATE);
 
@@ -111,5 +113,9 @@ public class Sentence2Activity extends AppCompatActivity {
         startActivity(intent);
     }
     public void settei(View v){
+    }
+    public void list(View v){
+        Intent intent = new Intent(this,TodoActivity.class);
+        startActivity(intent);
     }
 }

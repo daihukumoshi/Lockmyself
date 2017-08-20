@@ -21,18 +21,6 @@
         android:layout_below="@+id/editText2"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="時間"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="99dp"
-        android:id="@+id/hours"
-        android:textColor="@android:color/black"
-        android:layout_marginStart="32dp"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/minits" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,22 +31,12 @@
         android:layout_alignBottom="@+id/hours"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView19"
-        android:layout_weight="6.17"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="18sp" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/editText3"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
@@ -70,68 +48,102 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:text="スタート！"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button8"
-            android:layout_marginTop="12dp"
-            android:layout_below="@+id/editText3"
-            android:layout_alignParentStart="true"
-            android:onClick="start"
-            android:layout_weight="1" />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="101dp"
             android:layout_alignParentBottom="true">
 
-            <Button
-                android:text="時間設定"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button"
-                android:layout_weight="1"
-                android:onClick="time" />
+            <ImageButton
 
-            <Button
-                android:text="言い訳"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/button"
+                android:onClick="time"
+                android:background="@null"
+                android:src="@drawable/clock3"
+                android:layout_weight="1"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/say1"
                 android:id="@+id/button2"
                 android:layout_weight="1"
-                android:onClick="reason" />
+                android:onClick="reason"
+                android:scaleType="fitCenter"/>
 
-            <Button
-                android:text="設定"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/button3"
                 android:layout_weight="1"
-                android:onClick="settei" />
+                android:onClick="settei"
+                android:background="@null"
+                android:src="@drawable/haguruma1"
+                android:scaleType="fitCenter"/>
+            <ImageButton
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button4"
+                android:layout_weight="1"
+                android:onClick="list"
+                android:background="@null"
+                android:src="@drawable/list"
+                android:scaleType="fitCenter"/>
 
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:text="スタート！"
+        android:textColor="#00afcc"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button8"
+        android:onClick="start"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:layout_below="@+id/editText3"
+        android:layout_alignParentStart="true" />
+
     <TextView
-        android:text="分間　頑張る！"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/minits"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:text="分間　頑張る！"
+        android:layout_alignBaseline="@+id/editText2"
         android:layout_alignBottom="@+id/editText2"
         android:layout_alignParentEnd="true" />
 
-    <EditText
+    <TextView
+        android:text="時間"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="86dp"
+        android:id="@+id/hours"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/minits" />
+
+    <EditText
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText2"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

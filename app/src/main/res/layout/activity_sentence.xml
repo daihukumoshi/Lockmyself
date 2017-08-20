@@ -17,8 +17,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textColor="#00afcc"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -221,6 +221,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ok"
                 android:onClick="ok"
+                android:textColor="#00afcc"
+                android:background="@null"
                 android:layout_alignBaseline="@+id/textView"
                 android:layout_alignBottom="@+id/textView"
                 android:layout_alignParentEnd="true"

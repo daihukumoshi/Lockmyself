@@ -62,4 +62,8 @@ public class ReasonActivity extends AppCompatActivity {
         intent.putExtra("size",index2);
         startActivity(intent);
     }
+    public void list(View v){
+        Intent intent = new Intent(this,TodoActivity.class);
+        startActivity(intent);
+    }
 }
