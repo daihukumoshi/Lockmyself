@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_weight = "7">
 
         <TextView
             android:text="脅し文"
@@ -33,7 +34,7 @@
             android:layout_marginTop="14dp"
             android:layout_below="@+id/textView"
             android:layout_alignParentStart="true"
-            android:layout_height="385dp">
+            android:layout_height="420dp">
 
 
             <LinearLayout
@@ -259,7 +260,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="101dp"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            >
 
             <ImageButton
 
@@ -294,16 +296,6 @@
                 android:src="@drawable/haguruma1"
                 android:scaleType="fitCenter"/>
 
-            <ImageButton
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button4"
-                android:layout_weight="1"
-                android:onClick="list"
-                android:background="@null"
-                android:src="@drawable/list"
-                android:scaleType="fitCenter"/>
 
 
 

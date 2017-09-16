@@ -3,7 +3,9 @@ package com.lifeistech.android.lockmyself;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.WindowManager;
@@ -36,12 +40,15 @@ public class subActivity extends AppCompatActivity {
     String sentence;
 
     ArrayList LinkedList1;
-
+    SharedPreferences pref;
 
     static final int RESULT_ENABLE = 1;
 
     DevicePolicyManager mDevicePolicyManager;
     ComponentName mDarSample;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,11 @@ public class subActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sub);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        View view = getWindow().getDecorView();
+        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
+        pref = getSharedPreferences("time", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         // DevicePolicyManagerを取得する。
         mDevicePolicyManager = (DevicePolicyManager)getSystemService(this.DEVICE_POLICY_SERVICE);
         // ComponentNameを取得する。
@@ -107,8 +118,13 @@ public class subActivity extends AppCompatActivity {
             }
         },0,60000);
 
-    }
+        editor.putInt("1",fText1);
+        editor.putInt("2",fText2);
+        editor.commit();
 
+        startService(new Intent(subActivity.this, LayerService.class));
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -124,6 +140,7 @@ public class subActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Disable Back key
@@ -136,11 +153,11 @@ public class subActivity extends AppCompatActivity {
 
     public void  rock (View v){
         Intent intent = new Intent(this,ReallyActivity.class);
+        stopService(new Intent(subActivity.this, LayerService.class));
         intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
-
-
 }
+
 
 

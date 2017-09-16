@@ -1,5 +1,6 @@
 package com.lifeistech.android.lockmyself;
 
+import android.app.TimePickerDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,13 +15,17 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Handler;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.logging.LogRecord;
 
@@ -34,17 +39,20 @@ public class MainActivity extends AppCompatActivity {
     int fText1;
     int fText2;
     int fText;
-    EditText editText1;
-    EditText editText2;
     EditText editText3;
     String text3;
-    String text2;
-    String text1;
     ArrayList LinkedList1;
     int index;
     String sentence;
     int index2;
     TextView textView19;
+    TextView TextView1;
+    TextView TextView2;
+    int oclock;
+    int minutes;
+    String oText;
+    String mText;
+
 
 
     @Override
@@ -57,14 +65,11 @@ public class MainActivity extends AppCompatActivity {
         LinkedList1 = intent.getIntegerArrayListExtra("LinkedList1");
 
         index2 = intent.getIntExtra("size",0);
-
-        editText1= (EditText) findViewById(R.id.editText);
-        editText1.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
-
-        editText2 = (EditText) findViewById(R.id.editText2);
-        editText2.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
-
         editText3 = (EditText) findViewById(R.id.editText3);
+
+        TextView1 = (TextView)findViewById(R.id.TextView2);
+        TextView2 = (TextView)findViewById(R.id.TextView1);
+
         if(index2!=0){
             Random random = new Random();
             index = random.nextInt(index2);
@@ -78,6 +83,35 @@ public class MainActivity extends AppCompatActivity {
         //textView19.setText("アプリの円滑な利用のため、\n"+"必ずロックを許可してください");
 
     }
+
+    public void change (View v) {
+
+        final Calendar calendar = Calendar.getInstance();
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar.get(Calendar.MINUTE);
+
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Toast.makeText(MainActivity.this,
+                                String.valueOf(hourOfDay) + ":" + String.valueOf(minute),
+                                Toast.LENGTH_SHORT);
+
+
+
+                        oclock = hourOfDay;
+                        minutes = minute;
+                        oText = String.valueOf(oclock);
+                        mText = String.valueOf(minutes);
+
+                        TextView1.setText(oText);
+                        TextView2.setText(mText);
+                    }
+                }, hour, minute, true);
+        timePickerDialog.show();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
          //Disable Back key
@@ -89,37 +123,24 @@ public class MainActivity extends AppCompatActivity {
     }
     public void start (View v) {
 
-        if(LinkedList1==null){
-            Toast.makeText(this,"設定から文を入力もしくは\n"+"更新してください",Toast.LENGTH_LONG).show();
-        } else{
-        Log.d("text1", ""+editText1.length());
-        Log.d("text2", ""+editText2.length());
+        Log.d("start","start = ");
 
-        if(editText1.length()==0&&editText2.length() == 0){
+        if(LinkedList1==null){
+            Toast.makeText(this,"設定から文を入力もしくは\n"+"更新してください",Toast.LENGTH_SHORT).show();
+        } else{
+
+        if(oText.length()==0&&mText.length() == 0){
 
             Toast toast = Toast.makeText(MainActivity.this, "時間を入力してください", Toast.LENGTH_SHORT);
             toast.show();
-
-        }else {
-
-
-            text1 = editText1.getText().toString();
-            text2 = editText2.getText().toString();
-            text3 = editText3.getText().toString();
-
-            if (editText1.length() == 0) {
-                text1 = "0";
             }
-            if (editText2.length() == 0) {
-                text2 = "0";
-            }
-
-
-            Text1 = Integer.parseInt(text1);
-            Text2 = Integer.parseInt(text2);
+        else{
+            Text1 = oclock;
+            Text2 = minutes;
             fText1 = Text1 * 3600;
             fText2 = Text2 * 60;
             fText = fText1 + fText2;
+            text3 = editText3.getText().toString();
 
             Intent intent2 = new Intent(this, subActivity.class);
             intent2.putExtra("mokuhyou", text3);//Edittext3にある目標をsubActivityに受け渡す
@@ -128,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             sentence = LinkedList1.get(index).toString();//落ちる
             intent2.putExtra("sentence", sentence);
             startActivity(intent2);
-            }
+        }
 
         }
 
@@ -150,3 +171,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+

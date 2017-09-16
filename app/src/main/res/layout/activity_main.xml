@@ -10,43 +10,156 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.lifeistech.android.lockmyself.MainActivity">
 
-    <TextView
-        android:text="この時間での目標"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:id="@+id/textView3"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_alignBaseline="@+id/hours"
-        android:layout_alignBottom="@+id/hours"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="15dp"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView19"
+            android:layout_weight="0.25" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_weight="0.14">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:id="@+id/TextView2"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/TextView1"
+                android:layout_alignStart="@+id/TextView1"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@android:color/background_dark"
+                android:gravity="right"/>
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView21" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/minits"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_below="@+id/hours"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:text="時間" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView20"
+            android:layout_weight="0.07" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_weight="0.12"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="153dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:id="@+id/TextView1"
+                android:layout_alignBottom="@+id/minits"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:gravity="right"/>
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView29" />
+
+            <TextView
+                android:text="分間　頑張る！"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hours"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView3"
+                android:layout_alignStart="@+id/minits"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView23"
+                android:layout_weight="9" />
+
+            <Button
+                android:text="編集"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button9"
+                android:layout_weight="1"
+                android:background="@null"
+                android:textColor="#00afcc"
+                android:onClick="change" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView22"
+            android:layout_weight="0.29" />
+
+        <TextView
+            android:text="この時間での目標"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_below="@+id/TextView2"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="17dp"/>
+
+        <Button
+            android:text="スタート！"
+            android:textColor="#00afcc"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button8"
+            android:onClick="start"
+            android:background="@null"
+            android:layout_below="@+id/editText3"
+            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -78,72 +191,17 @@
 
             <ImageButton
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button3"
-                android:layout_weight="1"
-                android:onClick="settei"
-                android:background="@null"
-                android:src="@drawable/haguruma1"
-                android:scaleType="fitCenter"/>
-            <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:onClick="settei"
+            android:background="@null"
+            android:src="@drawable/haguruma1"
+            android:scaleType="fitCenter"/>
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button4"
-                android:layout_weight="1"
-                android:onClick="list"
-                android:background="@null"
-                android:src="@drawable/list"
-                android:scaleType="fitCenter"/>
 
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:text="スタート！"
-        android:textColor="#00afcc"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button8"
-        android:onClick="start"
-        android:layout_weight="1"
-        android:layout_marginTop="10dp"
-        android:background="@null"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/minits"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:text="分間　頑張る！"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="時間"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="86dp"
-        android:id="@+id/hours"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/minits" />
-
-    <EditText
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_marginTop="12dp"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

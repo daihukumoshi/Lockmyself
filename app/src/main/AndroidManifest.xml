@@ -39,7 +39,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Sentence2Activity" />
         <activity android:name=".TodoActivity" />
-        <activity android:name=".WhichActivity"></activity>
+        <activity android:name=".WhichActivity" />
+        <activity android:name=".Really2Activity"></activity>
     </application>
 
 </manifest>
