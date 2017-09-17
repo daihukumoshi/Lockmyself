@@ -31,6 +31,8 @@
         android:layout_alignStart="@+id/textView1"
         android:layout_alignEnd="@+id/textView1"
         android:textSize="24sp"
-        android:onClick="Thanks" />
+        android:onClick="Thanks"
+        android:background="@null"
+        android:textColor="#00afcc" />
 
 </RelativeLayout>

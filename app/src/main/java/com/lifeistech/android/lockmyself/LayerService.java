@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -23,94 +24,57 @@ import java.util.TimerTask;
  * Created by mikikyouka on 2017/09/16.
  */
 public class LayerService extends Service {
-    View view;
+    View player_view;
+    //画面に全面表示させるビュー
     WindowManager wm;
-    Timer timer2;
-    Handler handler2;
-    int fText;
-    TextView text1;
-    TextView text2;
-    int fText1;
-    int fText2;
-
-
-    @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
-
-        SharedPreferences pref = getSharedPreferences("time",Context.MODE_PRIVATE);
-        fText1 = pref.getInt("1",0);
-        fText2 = pref.getInt("2",0);
-
-
-        // Viewからインフレータを作成する
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-
-        // 重ね合わせするViewの設定を行う
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
-                PixelFormat.TRANSLUCENT);
-
-        // WindowManagerを取得する
-        wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-
-        // レイアウトファイルから重ね合わせするViewを作成する
-        view = layoutInflater.inflate(R.layout.overlay, null);
-
-        // Viewを画面上に重ね合わせする
-        wm.addView(view, params);
-        handler2 = new Handler();
-
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
-        fText = fText2+fText1*60;
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
+        LayoutInflater inflater = LayoutInflater.from(this);
 
-        timer2 = new Timer(false);
-        timer2.schedule(new TimerTask() {
+        //画面に常に表示するビューのレイアウトの設定
+        WindowManager.LayoutParams params
+                = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                0, 80,
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                PixelFormat.TRANSLUCENT);
+        wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        player_view = inflater.inflate(R.layout.overlay, null);
+
+        final Button closeButton
+                = (Button) player_view.findViewById(R.id.button7);
+        closeButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void run() {
-                handler2.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (fText == 0) {
-                            timer2.cancel();
-                            Intent intent2 = new Intent(getApplicationContext(), CongratulationsActivity.class);
-                            startActivity(intent2);
-                        } else {
-                            fText1 = fText / 60;
-                            fText2 = fText % 60;
-                            text2.setText("" + fText2);
-                            text1.setText("" + fText1);
-                        }
-                        fText--;
-
-                        Log.d("FT=", "" + fText);
-                    }
-                });
+            public void onClick(View v)
+            {
+                onDestroy();
             }
-        },0,60000);
+        });
 
+        wm.addView(player_view, params);
+        //レイヤーにビューを重ねる。
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        // サービスが破棄されるときには重ね合わせしていたViewを削除する
-        wm.removeView(view);
+        wm.removeView(player_view);
+        //ビューをレイヤーから削除する
     }
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-
 }

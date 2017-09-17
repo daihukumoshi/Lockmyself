@@ -71,7 +71,7 @@ public class subActivity extends AppCompatActivity {
                 mDarSample);
         startActivityForResult(intent2, RESULT_ENABLE);
 
-        setContentView(R.layout.activity_sub);
+        //setContentView(R.layout.activity_sub);
         mDevicePolicyManager.lockNow();
 
 
@@ -122,7 +122,7 @@ public class subActivity extends AppCompatActivity {
         editor.putInt("2",fText2);
         editor.commit();
 
-        startService(new Intent(subActivity.this, LayerService.class));
+        //startService(new Intent(subActivity.this, LayerService.class));
 
     }
 
@@ -153,11 +153,8 @@ public class subActivity extends AppCompatActivity {
 
     public void  rock (View v){
         Intent intent = new Intent(this,ReallyActivity.class);
-        stopService(new Intent(subActivity.this, LayerService.class));
+        //stopService(new Intent(subActivity.this, LayerService.class));
         intent.putExtra("sentence",sentence);
         startActivity(intent);
     }
 }
-
-
-
