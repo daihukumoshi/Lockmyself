@@ -10,6 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -20,6 +25,7 @@ public class ReasonActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     ArrayList LinkedList1;
     int index2;
+    String reasons[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +33,23 @@ public class ReasonActivity extends AppCompatActivity {
         Listview = (ListView) findViewById(R.id.ListView1);
         adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1);
         Listview.setAdapter(adapter);
+        Map<String, Integer> m = new HashMap<String, Integer>();
+
 
         Intent intent = getIntent();
         index2 = intent.getIntExtra("size",0);
         Realm.init(this);
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<ReasonData> reasonData = realm.where(ReasonData.class).findAll();
+        RealmResults<ReasonData> reasonData = realm.where(ReasonData.class).findAll().sort("reason");
         int size =reasonData.size();
+
         for(int a = 0;a<size;a++){
-            adapter.add(reasonData.get(a).reason);
+            reasons = new String[size];
+            reasons[a] = (reasonData.get(a).reason);
+            adapter.add(reasons[a]);
         }
-        adapter.notifyDataSetChanged();
         realm.close();
+        adapter.notifyDataSetChanged();
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

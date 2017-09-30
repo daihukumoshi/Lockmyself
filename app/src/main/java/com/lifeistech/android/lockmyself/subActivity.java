@@ -70,9 +70,9 @@ public class subActivity extends AppCompatActivity {
         intent2.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
                 mDarSample);
         startActivityForResult(intent2, RESULT_ENABLE);
-
-        //setContentView(R.layout.activity_sub);
         mDevicePolicyManager.lockNow();
+
+
 
 
 
@@ -80,6 +80,7 @@ public class subActivity extends AppCompatActivity {
         win.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         textView1 = (TextView) findViewById(R.id.textView16);
+
         text1 = (TextView)findViewById(R.id.textView11) ;
         text2 = (TextView)findViewById(R.id.textView12) ;
         Intent intent = getIntent();
@@ -89,7 +90,14 @@ public class subActivity extends AppCompatActivity {
         fText1 = intent.getIntExtra("t1",0);
         fText2 = intent.getIntExtra("t2",0);
         textView1.setText(goaltext);
+
         handler2 = new Handler();
+
+        editor.putInt("1",fText1);
+        editor.putInt("2",fText2);
+        editor.commit();
+        Log.d("aaaa",pref.getInt("1",0)+"");
+        Log.d("aaaa",pref.getInt("2",0)+"");
 
         fText = fText2+fText1*60;
 
@@ -111,19 +119,12 @@ public class subActivity extends AppCompatActivity {
                             text1.setText("" + fText1);
                         }
                         fText--;
-
                         Log.d("FT=", "" + fText);
                     }
                 });
             }
         },0,60000);
-
-        editor.putInt("1",fText1);
-        editor.putInt("2",fText2);
-        editor.commit();
-
         //startService(new Intent(subActivity.this, LayerService.class));
-
     }
 
     @Override
@@ -147,10 +148,8 @@ public class subActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return false;
         }
-
         return super.onKeyDown(keyCode, event);
     }
-
     public void  rock (View v){
         Intent intent = new Intent(this,ReallyActivity.class);
         //stopService(new Intent(subActivity.this, LayerService.class));

@@ -30,7 +30,7 @@ public class WhichActivity extends AppCompatActivity {
         adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1);
         listView.setAdapter(adapter);
 
-        for(int i = 0;i<=a;i++){
+        for(int i = 1;i<=a;i++){
             adapter.add(pref.getString(String.valueOf(i),""));
         }
         adapter.notifyDataSetChanged();
